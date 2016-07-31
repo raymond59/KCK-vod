@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+
+<!-- Important Owl stylesheet -->
+<link rel="stylesheet" href="http://owlcarousel.owlgraphic.com/assets/owlcarousel/assets/owl.carousel.min.css">
+ 
+<!-- Default Theme -->
+<link rel="stylesheet" href="css/owl.theme.css">
+<link rel="stylesheet" href="css/vod.css">
+
+<script type="text/javascript" src="https://code.angularjs.org/1.4.8/angular.min.js"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+
+<script src="http://owlcarousel.owlgraphic.com/assets/owlcarousel/owl.carousel.js"></script>
+<link  type="text/css"  rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+<script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/videoPlayer.js"></script>
+<script type="text/javascript" src="js/mousewheel.min.js"></script>
+
+
+
+<!--
+<link  type="text/css"  rel=stylesheet href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+-->
+<html>
+
+<head>
+
+
+</head>
+
+<body  ng-app="app"  ng-controller="MainController" id="MainController" enter-Key="triggerClick()">
+
+<div >
+    <div >
+	
+	<table style="height:5%;width:100%;background-color:#000000;color:#FDFDFD">
+	<tr><td>Raymond VOD</td></tr>
+	<tr>
+	<td width="10%">
+	<table>
+	<tr><td width="50%">
+	<a ng-click="setCarou()" href style="color:orange">Home</a>
+	</td>
+	<td  width="50%">
+	<a ng-click="setHisotry()" href style="color:orange">History</a>
+	</td>
+	</tr>
+	</table>
+	</td>
+	
+	
+	</tr>
+	
+	</table>
+		<!--
+		    <div ng-repeat="movieItem in name.entries" class="item">
+	
+        <a href="{{movieItem.contents[0].url}}">
+          <img src="{{movieItem.images[0].url}}" />
+         
+        </a>
+   
+        </div>
+			
+ <div ng-repeat="movieItem in name.entries" class="item">
+	
+      <h1>1<h1>
+   
+        </div>
+		
+		
+		-->
+		
+		    <div ng-if="showCarou">
+		
+        <data-owl-carousel id="owl-demo" class="owl-carousel owl-theme" data-options="{loop:true}">
+			 
+ <div ng-repeat="movieItem in movies" class="item" owl-carousel-item="1" position="0" enter="0" >
+	
+	
+      <a href ng-click="playMovie(movieItem);saveViewData(movieItem.id);" style="text-decoration:none">
+         <div class="movieThumbnail"> <img ng-src="{{movieItem.images[0].url!==''?movieItem.images[0].url:unavailable}}" /> </div>
+        <h4>{{movieItem.title}}</h4>	 
+        </a>
+		
+        </div>
+
+	</data-owl-carousel>
+        </div>
+		
+				    <div ng-if="showHistory">
+		<div ng-if="viewData.length > 0">
+        <data-owl-carousel id="owl-demo" class="owl-carousel owl-theme" data-options="{loop:true}">
+			 <div ng-repeat="viewedItem in viewData" class="item" owl-carousel-item="1" position="0" enter="0">
+ <div ng-repeat="movieItem in movies | filter: {id:viewedItem.movie_id}:true"  >
+	
+      <a href ng-click="playMovie(movieItem);saveViewData(movieItem.id);" style="text-decoration:none">
+        <div class="movieThumbnail">  <img ng-src="{{movieItem.images[0].url!==''?movieItem.images[0].url:unavailable}}" /> </div>
+        <h4>{{movieItem.title}}</h4>
+		<h5>View Count: {{viewedItem.viewCount}}</h5>
+        </a>
+		
+        </div>
+</div>
+	</data-owl-carousel>
+	</div>
+	<div ng-if="viewData.length <= 0">
+		<h3>You have no movie viewing history.</h3>
+		<h3>Please play some video at home to leave history.</h3>
+	</div>
+        </div>
+		
+		
+		
+		
+		
+
+<div ng-show="showMovie">
+<video-Template></video-Template>
+
+</div>
+
+
+
+		</div>
+
+        </div>
+
+		
+
+
+<script type="text/javascript" src="js/carousel.js"></script>
+
+</body>
+</html>
