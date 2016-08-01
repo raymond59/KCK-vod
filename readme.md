@@ -21,3 +21,5 @@ How to install:
 4) import view_data.sql in sql folder to phpmyadmin
 
 5) git push vod file to your openshift application
+
+6) open vod/vod.html
